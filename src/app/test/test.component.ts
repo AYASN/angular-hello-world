@@ -11,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
     <h2 [class.text-danger]="hasError"></h2>
     <h2 [ngClass]="messageClasses" >Object of Classes example</h2>
 
-    <h2>{{"Welcome " + name}}</h2>
+    <h2 [style.color]="hasError ? 'red':'green'">{{"Welcome " + name + ", Style 1"}}</h2>
+    <h2 [style.color]="highlightColor">{{"Welcome " + name + ", Style 2"}}</h2>
+    <h2 [ngStyle]="titleStyles">{{"Welcome " + name + ", Style 3"}}</h2>
+
     {{name.length}}
     {{name.toUpperCase()}}
     {{greetUser()}}<br>
@@ -39,13 +42,18 @@ export class TestComponent implements OnInit {
   public siteUrl = window.location.href;
 
   public successClass = 'text-success';
-  public hasError = true;
+  public hasError = false;
   public isSpecial = true;
+  public highlightColor = 'orange';
   public messageClasses = {
-    'test-success': !this.hasError,
-    'test-danger': this.hasError,
-    'test-special': this.isSpecial
+    'text-success': !this.hasError,
+    'text-danger': this.hasError,
+    'text-special': this.isSpecial
   };
+  public titleStyles = {
+    color : 'blue',
+    fontStyle : 'italic'
+  }
 
   constructor() { }
 
